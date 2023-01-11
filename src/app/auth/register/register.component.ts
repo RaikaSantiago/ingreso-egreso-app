@@ -32,8 +32,16 @@ export class RegisterComponent implements OnInit {
   submit() {
 
     if (this.registroForm.valid) {
+      Swal.fire({
+        title: 'Espere por favor',
+        showConfirmButton: false,
+        didOpen: () => {
+          Swal.showLoading(Swal.getDenyButton())
+        }
+      })
       this.authService.insertUser(this.registroForm.value).then(credenciales => {
         console.log(credenciales);
+        Swal.close();
         this.router.navigate(['/']);
       }).catch(err => {
         Swal.fire({
