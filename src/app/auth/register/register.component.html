@@ -40,8 +40,11 @@
             </div>
 
             <div class="form-group">
-              <button [disabled]="registroForm.invalid" type="submit" class="btn btn-primary submit-btn btn-block">Crear
+              <button [disabled]="registroForm.invalid" *ngIf="!loading" type="submit" class="btn btn-primary submit-btn btn-block">Crear
                 cuenta</button>
+            </div>
+            <div class="form-group">
+              <button [disabled]="true" *ngIf="loading" type="button" class="btn btn-primary submit-btn btn-block"><i class="fa fa-spin fa-sync"></i> Espere por favor...</button>
             </div>
 
             <div class="text-block text-center my-3">
