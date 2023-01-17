@@ -8,8 +8,6 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
 
-  title = 'ingresoEgresoApp';
-  
   constructor(private authService: AuthService) {
     this.authService.initAuthListener();
   }

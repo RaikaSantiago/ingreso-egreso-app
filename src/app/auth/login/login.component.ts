@@ -1,36 +1,26 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
-import { AppState } from '../../app.reducer';
-import * as ui from '../../store/actions/ui.actions';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  loading: boolean;
-  uiSub: Subscription;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private store: Store<AppState>,
               private router: Router) { }
-
-  ngOnDestroy(): void {
-    this.uiSub.unsubscribe();
-  }
 
   ngOnInit(): void {
     this.form();
-    this.selectStoreLoading();
+
   }
   /**
    * Formulario Login
@@ -44,27 +34,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit() {
     if (this.loginForm.valid) {
-      this.store.dispatch(ui.loading({loading:true}));
-      this.selectStoreLoading();
-      // Swal.fire({
-      //   title: 'Espere por favor',
-      //   showConfirmButton: false,
-      //   didOpen: () => {
-      //     Swal.showLoading(Swal.getDenyButton())
-      //   }
-      // })
+      this.loading = true;
       const { correo, password } = this.loginForm.value;
       this.authService.loginAuth(correo, password).then(resp => {
-        console.log(resp);
-        this.store.dispatch(ui.loading({loading:false}));
-        this.selectStoreLoading();
-        console.log(this.loading);
-        
-        // Swal.close();
+        this.loading = false;
         this.router.navigate(['/']);
       }).catch(err => {
-        this.store.dispatch(ui.loading({loading:false}));
-        this.selectStoreLoading();
+        this.loading = false;
         Swal.fire({
           icon:'error',
           title: 'Ooops ...',
@@ -72,10 +48,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         })
       })
     }
-  }
-
-  selectStoreLoading(){
-    this.uiSub = this.store.select('ui').subscribe(ui => this.loading = ui.loading);
   }
 
 }
