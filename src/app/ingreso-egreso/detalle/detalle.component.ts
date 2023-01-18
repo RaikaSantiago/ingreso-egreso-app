@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { IngresoEgreso } from 'src/app/models/ingreso-egreso.models';
+import Swal from 'sweetalert2';
 import { AppState } from '../../app.reducer';
 import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
 
@@ -27,10 +28,8 @@ export class DetalleComponent implements OnInit, OnDestroy {
   }
 
   borrar(uid: string){
-    this.ieService.deleteItem(uid).then(res => {
-      console.log(res);
-      
-    })
+    this.ieService.deleteItem(uid).then(() => Swal.fire('Borrado', 'Item borrado', 'success'))
+    .catch( err => Swal.fire('Error', err.message, 'error'));
   }
 
 }

@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       )
       .subscribe(({ user }) => {
         this.ieSubs = this.ieService.initIngresoEgresoListener(user.uid).subscribe(ieFB => {
-
+          console.log(ieFB);
+          
           this.store.dispatch(ieActions.setItems({ items: ieFB }))
 
         })

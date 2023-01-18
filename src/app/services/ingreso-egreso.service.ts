@@ -10,8 +10,6 @@ import { map } from 'rxjs/operators';
 })
 export class IngresoEgresoService {
 
-  public uidUser: string = this.authService.usuario.uid;
-
   constructor(private fireStore: AngularFirestore,
     private authService: AuthService) { 
       
@@ -20,8 +18,8 @@ export class IngresoEgresoService {
   insIngresoEgreso(ingEgr: IngresoEgreso) {
     
     const { uid, ...ingEgre} = ingEgr; // Quitamos el uid con el estado undefined
-
-    return this.fireStore.doc(`${this.uidUser}/ingresos-egresos`)
+    
+    return this.fireStore.doc(`${this.authService.usuario.uid}/ingresos-egresos`)
       .collection('items')
       .add({ ...ingEgre });
   }
@@ -35,6 +33,6 @@ export class IngresoEgresoService {
   }
 
   deleteItem(uid: string){
-    return this.fireStore.doc(`${this.uidUser}/ingresos-egresos/items/${uid}`).delete();
+    return this.fireStore.doc(`${this.authService.usuario.uid}/ingresos-egresos/items/${uid}`).delete();
   }
 }

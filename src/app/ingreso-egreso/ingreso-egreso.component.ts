@@ -19,10 +19,13 @@ export class IngresoEgresoComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private store: Store<AppState>,
-    private ingresoEgresoService: IngresoEgresoService) { }
+    private ingresoEgresoService: IngresoEgresoService) { 
+      
+    }
 
   ngOnInit(): void {
     this.form();
+    this.onChanges();
   }
 
   form() {
@@ -69,5 +72,11 @@ export class IngresoEgresoComponent implements OnInit {
     }
 
   }
+
+  onChanges(): void {
+    this.ingEgrForm.valueChanges.subscribe(() => {
+      console.log(this.ingEgrForm.value)
+    });
+ }
 
 }
