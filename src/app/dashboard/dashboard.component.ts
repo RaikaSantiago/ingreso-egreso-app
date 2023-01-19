@@ -20,9 +20,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private ieService: IngresoEgresoService) { }
 
   ngOnDestroy(): void {
-    this.userSubs,this.ieSubs.unsubscribe();
-    // this.ieSubs.unsubscribe()
-    // this.userSubs.unsubscribe();
+
+    this.ieSubs?.unsubscribe()
+    this.userSubs?.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -32,8 +32,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       )
       .subscribe(({ user }) => {
         this.ieSubs = this.ieService.initIngresoEgresoListener(user.uid).subscribe(ieFB => {
-          console.log(ieFB);
-          
           this.store.dispatch(ieActions.setItems({ items: ieFB }))
 
         })

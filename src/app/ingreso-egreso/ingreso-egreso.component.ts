@@ -18,14 +18,12 @@ export class IngresoEgresoComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private fb: FormBuilder,
-    private store: Store<AppState>,
     private ingresoEgresoService: IngresoEgresoService) { 
       
     }
 
   ngOnInit(): void {
     this.form();
-    this.onChanges();
   }
 
   form() {
@@ -46,8 +44,6 @@ export class IngresoEgresoComponent implements OnInit {
       const ingresoEgreso = new IngresoEgreso(descripcion, monto, this.tipo);
 
       this.ingresoEgresoService.insIngresoEgreso(ingresoEgreso).then(res => {
-        console.log(res);
-        
         this.loading = false;
         Swal.fire({
           position: 'top-end',
@@ -72,11 +68,5 @@ export class IngresoEgresoComponent implements OnInit {
     }
 
   }
-
-  onChanges(): void {
-    this.ingEgrForm.valueChanges.subscribe(() => {
-      console.log(this.ingEgrForm.value)
-    });
- }
 
 }

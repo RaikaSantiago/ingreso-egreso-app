@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { IngresoEgreso } from 'src/app/models/ingreso-egreso.models';
+import { AppStateWithIE } from 'src/app/store/reducers/ingreso-egreso.reducer';
 import Swal from 'sweetalert2';
-import { AppState } from '../../app.reducer';
 import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
 
 @Component({
@@ -16,11 +16,11 @@ export class DetalleComponent implements OnInit, OnDestroy {
   ieArr: IngresoEgreso[] = [];
   itemSubs: Subscription;
 
-  constructor(private store: Store<AppState>,
+  constructor(private store: Store<AppStateWithIE>,
               private ieService: IngresoEgresoService) { }
 
   ngOnDestroy(): void {
-    this.itemSubs.unsubscribe();
+    this.itemSubs?.unsubscribe();
   }
 
   ngOnInit(): void {

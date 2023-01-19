@@ -18,10 +18,10 @@
             <label>Monto</label>
             <input type="number" class="form-control"  formControlName="monto">
             <p>
-              {{ingEgrForm.get('monto').value | currency}} Debe de ser un monto positivo
+              {{ingEgrForm.get('monto').value | currencyCop:'es'}} Debe de ser un monto positivo
             </p>
           </div>
-
+          
           <div class="form-group">
             <label>Tipo</label>
             <br>

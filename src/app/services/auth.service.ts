@@ -33,14 +33,12 @@ export class AuthService {
       if (fUser) {
         this.userSubs = this.firestore.doc(`${fUser.uid}/usuario`).valueChanges().subscribe(({ uid, nombre, email }) => {
           this._usuario = new UsuarioModel(uid, nombre, email);
-          console.log(this._usuario);
-          
           this.store.dispatch(auth.setUser({ user: this._usuario }));
           this.store.dispatch(unSetItems());
         })
       } else {
         this._usuario = null;
-        this.userSubs.unsubscribe();
+        this.userSubs?.unsubscribe();
         this.store.dispatch(auth.unSetUser());
       }
     })

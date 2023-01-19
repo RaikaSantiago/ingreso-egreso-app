@@ -5,12 +5,12 @@ import * as ie from './store/reducers/ingreso-egreso.reducer';
 
 export interface AppState {
    auth: auth.State;
-   ingresoEgreso: ie.State;
+   // ingresoEgreso: ie.State;
 }
 
 
 
 export const appReducers: ActionReducerMap<AppState> = {
    auth: auth.authReducer,
-   ingresoEgreso: ie.ingresoEgresoReducer
+   // ingresoEgreso: ie.ingresoEgresoReducer
 }

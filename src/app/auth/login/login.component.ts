@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       const { correo, password } = this.loginForm.value;
       this.authService.loginAuth(correo, password).then(resp => {
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['./home/dashboard']);
       }).catch(err => {
         this.loading = false;
         Swal.fire({

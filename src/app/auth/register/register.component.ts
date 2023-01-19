@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit{
       this.loading = true;
       this.authService.insertUser(this.registroForm.value).then(credenciales => {
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home/dashboard']);
       }).catch(err => {
         this.loading = false;
         Swal.fire({
