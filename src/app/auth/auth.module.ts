@@ -4,8 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { GlobalModule } from '../global.module';
 
-
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -13,7 +11,7 @@ import { GlobalModule } from '../global.module';
   ],
   imports: [
     CommonModule,
-    GlobalModule,
+    GlobalModule
   ],
   exports:[
     LoginComponent,

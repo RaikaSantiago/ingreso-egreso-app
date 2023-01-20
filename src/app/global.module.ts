@@ -31,7 +31,8 @@ import { CurrencyCopPipe } from './pipes/currency-cop.pipe';
     CurrencyMaskDirective,
     OrdenIEPipe,
     CurrencyMaskDirective, 
-    CurrencyI18nDirective
+    CurrencyI18nDirective,
+    RouterModule
   ]
 })
 export class GlobalModule { }

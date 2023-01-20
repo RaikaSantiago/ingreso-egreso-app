@@ -4,8 +4,6 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { GlobalModule } from '../global.module';
-import { RouterModule } from '@angular/router';
-
 
 
 @NgModule({
@@ -16,8 +14,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    GlobalModule,
-    RouterModule
+    GlobalModule
   ],
   exports:[
     FooterComponent,
